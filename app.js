@@ -3,9 +3,10 @@ const app=express();
 const mongoose = require('mongoose');
 const path=require('path');
 const seedDB=require('./seed');
-const productroutes=require('./Routes/product')
 const ejsMate = require('ejs-mate');
 const methodOverride=require('method-override');
+const productroutes=require('./Routes/product');
+const reviewroutes=require('./Routes/review');
 
 mongoose.connect('mongodb://127.0.0.1:27017/shopping-app')
 .then(()=>{
@@ -25,6 +26,7 @@ app.use(methodOverride('_method'));
 // seedDB();
 
 app.use(productroutes);
+app.use(reviewroutes);
 
 
 

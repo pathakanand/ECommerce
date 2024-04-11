@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Product = require('../Models/Product');
+const Review= require('../Models/Review')
 
 router.get('/products', async (req, res) => {
         let products = await Product.find({});
@@ -19,7 +20,7 @@ router.post('/products',async (req,res)=>{
 
 router.get('/products/:id',async (req,res)=>{
         let {id}= req.params;
-        let foundProduct = await Product.findById(id);
+        let foundProduct = await Product.findById(id).populate('review');
         res.render('product/show',{foundProduct});
 })
 
